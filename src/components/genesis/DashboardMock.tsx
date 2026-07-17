@@ -24,21 +24,30 @@ export function DashboardMock() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* Stacked back plate (right) — slides further on hover */}
+      {/* Stacked back plate (right) — visible shoulder for layered depth */}
       <motion.div
         aria-hidden
-        className="absolute inset-0 -z-10 rounded-[2rem] bg-[#0f0a1f] border border-white/[0.06] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)]"
-        initial={{ x: 12, y: 16 }}
-        variants={{ hover: { x: 18, y: 22 } }}
+        className="absolute -right-5 top-7 bottom-3 left-9 -z-10 rounded-[2rem] bg-gradient-to-br from-[#1b1236] to-[#090612] border border-white/[0.07] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.85)]"
+        initial={{ x: 0, y: 0 }}
+        variants={{ hover: { x: 7, y: 8 } }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* Stacked back plate (left) — mirrored for symmetry */}
+      {/* Stacked back plate (left) — mirrored visible shoulder */}
       <motion.div
         aria-hidden
-        className="absolute inset-0 -z-10 rounded-[2rem] bg-[#0f0a1f] border border-white/[0.06] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)]"
-        initial={{ x: -12, y: 16 }}
-        variants={{ hover: { x: -18, y: 22 } }}
+        className="absolute -left-5 top-7 right-9 bottom-3 -z-10 rounded-[2rem] bg-gradient-to-bl from-[#1b1236] to-[#090612] border border-white/[0.07] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.85)]"
+        initial={{ x: 0, y: 0 }}
+        variants={{ hover: { x: -7, y: 8 } }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      />
+
+      {/* Bottom spacer plate so both sides read as one clean stacked card */}
+      <motion.div
+        aria-hidden
+        className="absolute -left-3 -right-3 bottom-[-10px] h-16 -z-20 rounded-b-[2rem] bg-[#08050f] border-x border-b border-white/[0.05] shadow-[0_28px_55px_-25px_rgba(122,92,255,0.55)]"
+        initial={{ y: 0, opacity: 0.8 }}
+        variants={{ hover: { y: 6, opacity: 1 } }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       />
 
