@@ -39,18 +39,18 @@ export function Hero() {
 
             <motion.div
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
+              className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3"
             >
-              <a href="#produtos" className="group h-12 px-6 rounded-full text-sm font-semibold text-white bg-[#5B3DF5] hover:bg-[#6a4cf7] transition-colors inline-flex items-center gap-2 shadow-[0_10px_30px_-10px_rgba(91,61,245,0.7)]">
+              <a href="#produtos" className="group h-12 px-5 sm:px-6 rounded-full text-sm font-semibold text-white bg-[#5B3DF5] hover:bg-[#6a4cf7] transition-colors inline-flex items-center gap-2 shadow-[0_10px_30px_-10px_rgba(91,61,245,0.7)]">
                 Ver produtos
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
-              <a href="#tutorial" className="h-12 px-6 rounded-full text-sm font-semibold text-white bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition-colors inline-flex items-center gap-2">
+              <a href="#tutorial" className="h-12 px-5 sm:px-6 rounded-full text-sm font-semibold text-white bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] transition-colors inline-flex items-center gap-2">
                 <Zap className="h-4 w-4 text-[#A78BFA]" />
                 Como funciona
               </a>
-
             </motion.div>
+
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}
