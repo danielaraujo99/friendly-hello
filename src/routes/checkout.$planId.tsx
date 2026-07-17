@@ -76,7 +76,14 @@ function CheckoutPage() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", cpf: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [charge, setCharge] = useState<null | {
+    id: string;
+    qrCodeBase64: string | null;
+    qrCodeText: string | null;
+    expiresAt: string | null;
+    amount: number;
+  }>(null);
 
   const discount = useMemo(() => plan.old - plan.price, [plan]);
 
@@ -94,11 +101,25 @@ function CheckoutPage() {
 
   const submit = async (ev: React.FormEvent) => {
     ev.preventDefault();
+    setServerError(null);
     if (!validate()) return;
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setSuccess(true);
+    try {
+      const c = await createPixCharge({
+        data: {
+          planId: plan.id,
+          customerName: form.name.trim(),
+          customerEmail: form.email.trim(),
+          customerDocument: onlyDigits(form.cpf),
+        },
+      });
+      setCharge(c);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Falha ao gerar Pix. Tente novamente.";
+      setServerError(msg);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
