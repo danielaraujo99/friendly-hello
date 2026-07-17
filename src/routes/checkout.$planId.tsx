@@ -102,7 +102,7 @@ function CheckoutPage() {
     <div className="dark relative min-h-screen text-white overflow-x-hidden">
       <Background />
       <Navbar />
-      <main className="mx-auto max-w-7xl px-5 lg:px-8 pt-32 pb-20 lg:pt-36">
+      <main className="mx-auto max-w-7xl px-5 lg:px-8 pt-24 pb-20 lg:pt-28">
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             <ArrowLeft className="h-4 w-4" /> Voltar
