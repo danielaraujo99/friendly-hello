@@ -72,7 +72,7 @@ export function Benefits() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {/* Big left card */}
           <motion.div
             onMouseMove={handleMouseMove}
