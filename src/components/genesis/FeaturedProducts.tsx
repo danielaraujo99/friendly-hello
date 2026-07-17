@@ -123,7 +123,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
 
       {/* Visual header */}
-      <div className="relative m-3 h-[360px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1A1236] via-[#120C24] to-[#0A0616]">
+      <div className="relative m-3 h-[320px] sm:h-[360px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1A1236] via-[#120C24] to-[#0A0616]">
         {plan.image ? (
           <>
             <motion.img
