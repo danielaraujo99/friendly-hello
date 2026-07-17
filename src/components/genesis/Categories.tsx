@@ -17,7 +17,7 @@ const CATS = [
 export function Categories() {
   return (
     <section id="categorias" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <SectionHeader
           eyebrow="Categorias"
           title={<>Explore por <span className="text-gradient">categoria</span></>}

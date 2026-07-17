@@ -108,7 +108,7 @@ export function VideoTutorial() {
   };
 
   return (
-    <section id="tutorial" className="relative py-24 sm:py-32">
+    <section id="tutorial" className="relative py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-5xl px-5 lg:px-8">
         <SectionHeader
           eyebrow="Guia prático • Só 2 minutos"

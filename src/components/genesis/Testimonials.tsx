@@ -12,7 +12,7 @@ const T = [
 export function Testimonials() {
   return (
     <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <SectionHeader
           eyebrow="Depoimentos"
           title={<>O que dizem os <span className="text-gradient">clientes</span></>}

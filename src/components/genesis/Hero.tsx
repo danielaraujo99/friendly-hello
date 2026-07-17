@@ -5,7 +5,7 @@ import { DashboardMock } from "./DashboardMock";
 export function Hero() {
   return (
     <section id="hero" className="relative pt-28 sm:pt-32 pb-14 sm:pb-16 lg:pt-40 lg:pb-24">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <motion.div
