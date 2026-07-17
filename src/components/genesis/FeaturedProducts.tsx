@@ -89,7 +89,6 @@ export function FeaturedProducts() {
             ref={scrollerRef}
             className="no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 sm:-mx-5 px-4 sm:px-5 lg:mx-0 lg:px-0"
           >
-          >
             {PLANS.map((p, i) => (
               <PlanCard key={p.duration} plan={p} index={i} />
             ))}
