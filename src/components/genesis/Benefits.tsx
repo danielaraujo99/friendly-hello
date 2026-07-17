@@ -80,7 +80,7 @@ export function Benefits() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className={`lg:row-span-2 lg:col-span-1 ${cardBase} min-h-[340px] flex flex-col`}
+            className={`sm:col-span-2 lg:col-span-1 lg:row-span-2 ${cardBase} min-h-[260px] sm:min-h-[340px] flex flex-col`}
           >
             <Glow />
             {/* Decorative orb */}
