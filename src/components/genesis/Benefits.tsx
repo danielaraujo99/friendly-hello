@@ -91,7 +91,7 @@ export function Benefits() {
             <IconBadge><Zap className="h-5 w-5" /></IconBadge>
             <h3 className="mt-6 text-xl font-semibold tracking-tight">Entrega 100% automática</h3>
             <p className="mt-2 text-sm text-white/60 leading-relaxed">
-              Assim que o PIX é confirmado, seu produto é liberado na hora — sem espera, sem fila e sem precisar falar com ninguém.
+              Assim que o PIX é confirmado, seu produto é liberado na hora, sem espera, sem fila e sem precisar falar com ninguém.
             </p>
             <div className="mt-auto pt-8 flex items-center gap-2 text-xs text-[#A78BFA]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#A78BFA] shadow-[0_0_10px_#A78BFA] animate-pulse" />

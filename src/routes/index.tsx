@@ -7,10 +7,7 @@ import { CommunityBanner } from "@/components/genesis/CommunityBanner";
 import { VideoTutorial } from "@/components/genesis/VideoTutorial";
 import { FeaturedProducts } from "@/components/genesis/FeaturedProducts";
 import { Benefits } from "@/components/genesis/Benefits";
-import { HowItWorks } from "@/components/genesis/HowItWorks";
-import { Testimonials } from "@/components/genesis/Testimonials";
 import { FAQ } from "@/components/genesis/FAQ";
-import { CTA } from "@/components/genesis/CTA";
 import { Footer } from "@/components/genesis/Footer";
 
 export const Route = createFileRoute("/")({
@@ -29,6 +26,7 @@ function Index() {
         <VideoTutorial />
         <FeaturedProducts />
         <Benefits />
+        <FAQ />
       </main>
       <Footer />
     </div>

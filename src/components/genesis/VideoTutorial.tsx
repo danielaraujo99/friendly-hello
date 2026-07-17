@@ -118,7 +118,7 @@ export function VideoTutorial() {
               <span className="text-gradient">dois minutos</span>
             </>
           }
-          description="Aperte o play e veja passo a passo como colocar a Extensão pra rodar no seu navegador — sem enrolação e sem depender de tutorial escrito."
+          description="Aperte o play e veja passo a passo como colocar a Extensão pra rodar no seu navegador, sem enrolação e sem depender de tutorial escrito."
         />
 
         <motion.div
