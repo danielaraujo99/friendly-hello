@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight, ShoppingBag, Infinity as InfinityIcon, Zap, 
 import loveHyro1d from "@/assets/love-hyro-1d.png.asset.json";
 import loveHyro3d from "@/assets/love-hyro-3d.png.asset.json";
 import loveHyro7d from "@/assets/love-hyro-7d.png.asset.json";
+import loveHyro15d from "@/assets/love-hyro-15d.png.asset.json";
+import loveHyro30d from "@/assets/love-hyro-30d.png.asset.json";
 import { SectionHeader } from "./SectionHeader";
 
 type Plan = {
