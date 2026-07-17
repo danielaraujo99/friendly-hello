@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Love Hyro é a extensão essencial para congelar seus créditos no navegador com PIX e liberação imediata." },
       { name: "theme-color", content: "#0B0715" },
       { property: "og:title", content: "Love Hyro · Extensão premium para congelar créditos" },
-      { property: "og:description", content: "Escale seu negócio digital com uma plataforma refinada, rápida e segura." },
+      { property: "og:description", content: "Ative o congelamento de créditos no seu navegador, com PIX e liberação na hora." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
