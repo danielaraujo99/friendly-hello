@@ -199,16 +199,17 @@ function CheckoutPage() {
                   <span className="h-6 w-6 rounded-full grid place-items-center bg-[#5B3DF5]/20 border border-[#7A5CFF]/40 text-[10px] text-[#A78BFA]">2</span>
                   Pagamento
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-white">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 sm:p-4 flex items-center gap-3 flex-wrap sm:flex-nowrap">
+                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-white shrink-0">
                     <PixIcon className="h-6 w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold">PIX · Aprovação instantânea</div>
-                    <div className="text-xs text-white/50">Liberação automática assim que o pagamento é confirmado.</div>
+                    <div className="text-[11px] sm:text-xs text-white/50 leading-snug">Liberação automática assim que o pagamento é confirmado.</div>
                   </div>
-                  <span className="text-[10px] font-black tracking-wider rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 px-2 py-1">RECOMENDADO</span>
+                  <span className="shrink-0 text-[10px] font-black tracking-wider rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 px-2 py-1">RECOMENDADO</span>
                 </div>
+
 
                 <button
                   type="submit"
