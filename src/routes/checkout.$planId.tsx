@@ -331,3 +331,16 @@ function Row({ label, value, muted, accent }: { label: string; value: string; mu
     </div>
   );
 }
+
+function PixIcon({ className, monochrome }: { className?: string; monochrome?: boolean }) {
+  // Official Pix mark (Banco Central do Brasil) — stylized rotated square with 4 arrow-like notches.
+  const c = monochrome ? "currentColor" : "#32BCAD";
+  return (
+    <svg className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Pix" role="img">
+      <path fill={c} d="M242.4 292.5c7.5 7.5 19.7 7.5 27.2 0l67.2-67.2c3-3 7-4.6 11.2-4.6h8.2L271.8 141.3c-8.7-8.7-22.9-8.7-31.6 0L155.9 220.7h4.9c4.2 0 8.2 1.7 11.2 4.6l70.4 67.2z"/>
+      <path fill={c} d="M269.6 373.7c-7.5 7.5-19.7 7.5-27.2 0l-70.4-70.4c-3-3-7-4.6-11.2-4.6h-11.2L233.9 383c8.7 8.7 22.9 8.7 31.6 0l84.2-84.2h-8.2c-4.2 0-8.2-1.7-11.2-4.6l-60.7 79.5z"/>
+      <path fill={c} d="M383.9 220.7l-50.7 0-58.3 58.3c-11.6 11.6-30.6 11.6-42.2 0l-58.3-58.3-50.7 0-33.6 33.6c-8.7 8.7-8.7 22.9 0 31.6l33.6 33.6 50.7 0 58.3-58.3c11.6-11.6 30.6-11.6 42.2 0l58.3 58.3 50.7 0 33.6-33.6c8.7-8.7 8.7-22.9 0-31.6l-33.6-33.6z"/>
+    </svg>
+  );
+}
+
