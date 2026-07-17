@@ -29,10 +29,6 @@ function Index() {
         <Categories />
         <FeaturedProducts />
         <Benefits />
-        <HowItWorks />
-        <Testimonials />
-        <FAQ />
-        <CTA />
       </main>
       <Footer />
     </div>
