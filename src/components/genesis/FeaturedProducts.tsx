@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ShoppingBag, Infinity as InfinityIcon, Zap, ShieldCheck, Clock, CheckCircle2 } from "lucide-react";
+import loveHyro1h from "@/assets/love-hyro-1h.png.asset.json";
 import loveHyro1d from "@/assets/love-hyro-1d.png.asset.json";
 import loveHyro3d from "@/assets/love-hyro-3d.png.asset.json";
 import loveHyro7d from "@/assets/love-hyro-7d.png.asset.json";
