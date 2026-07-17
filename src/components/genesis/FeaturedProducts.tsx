@@ -225,8 +225,8 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
 
       {/* Body */}
-      <div className="relative px-5 pb-5 pt-1">
-        <div className="flex items-center gap-3 text-[11px] font-bold">
+      <div className="relative px-4 sm:px-5 pb-5 pt-1">
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-bold flex-wrap">
           <span className="inline-flex items-center gap-1 text-emerald-300">
             <CheckCircle2 className="h-3 w-3" /> AUTO
           </span>
@@ -236,30 +236,30 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
           <span className="text-white/60">VENDIDAS: <span className="text-[#A78BFA] font-black">{plan.sold}</span></span>
         </div>
 
-        <h3 className="mt-3 text-[16px] font-black tracking-tight leading-snug text-white">
+        <h3 className="mt-3 text-[15px] sm:text-[16px] font-black tracking-tight leading-snug text-white">
           {plan.title}
         </h3>
-        <p className="mt-2 text-[13px] text-white/50 leading-relaxed line-clamp-2">
+        <p className="mt-2 text-[12.5px] sm:text-[13px] text-white/50 leading-relaxed line-clamp-2">
           {plan.description}
         </p>
 
         <div className="mt-5 flex items-end justify-between gap-3">
-          <div>
+          <div className="min-w-0">
             <div className="text-xs text-white/35 line-through">{formatBRL(plan.old)}</div>
-            <div className="text-3xl font-black tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black tracking-tight">
               <span className="text-gradient">{formatBRL(plan.price)}</span>
             </div>
           </div>
           <Link
             to="/checkout/$planId"
             params={{ planId: plan.id }}
-            className="inline-flex items-center gap-2 h-12 px-5 rounded-full text-[13px] font-black tracking-wider text-white bg-gradient-to-b from-[#7A5CFF] to-[#5B3DF5] shadow-[0_10px_30px_-10px_rgba(91,61,245,0.9)] hover:brightness-110 hover:-translate-y-0.5 transition-all"
+            className="shrink-0 inline-flex items-center gap-1.5 sm:gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-full text-[12px] sm:text-[13px] font-black tracking-wider text-white bg-gradient-to-b from-[#7A5CFF] to-[#5B3DF5] shadow-[0_10px_30px_-10px_rgba(91,61,245,0.9)] hover:brightness-110 hover:-translate-y-0.5 transition-all"
           >
             COMPRAR <ChevronRight className="h-4 w-4" />
           </Link>
-
         </div>
       </div>
+
       </div>
     </motion.article>
 
