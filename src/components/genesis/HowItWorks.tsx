@@ -10,7 +10,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <SectionHeader
           eyebrow="Como funciona"
           title={<>Três passos até o <span className="text-gradient">upgrade</span></>}

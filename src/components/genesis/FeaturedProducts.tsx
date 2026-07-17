@@ -46,8 +46,9 @@ export function FeaturedProducts() {
   };
 
   return (
-    <section id="produtos" className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+    <section id="produtos" className="relative py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
+
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <SectionHeader
             align="left"
@@ -86,7 +87,7 @@ export function FeaturedProducts() {
 
           <div
             ref={scrollerRef}
-            className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 lg:mx-0 lg:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 sm:-mx-5 px-4 sm:px-5 lg:mx-0 lg:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {PLANS.map((p, i) => (
               <PlanCard key={p.duration} plan={p} index={i} />
@@ -107,7 +108,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       whileHover={{ y: -6 }}
-      className="group relative snap-start shrink-0 w-[320px] sm:w-[360px] rounded-3xl bg-[#0F0A20] border border-white/[0.07] hover:border-white/15 transition-all duration-500 hover:shadow-[0_20px_60px_-30px_rgba(122,92,255,0.5)]"
+      className="group relative snap-start shrink-0 w-[86vw] max-w-[340px] sm:w-[360px] sm:max-w-none rounded-3xl bg-[#0F0A20] border border-white/[0.07] hover:border-white/15 transition-all duration-500 hover:shadow-[0_20px_60px_-30px_rgba(122,92,255,0.5)]"
     >
       {/* Soft ambient glow (hover) */}
       <div
@@ -122,7 +123,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
 
       {/* Visual header */}
-      <div className="relative m-3 h-[360px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1A1236] via-[#120C24] to-[#0A0616]">
+      <div className="relative m-3 h-[320px] sm:h-[360px] rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1A1236] via-[#120C24] to-[#0A0616]">
         {plan.image ? (
           <>
             <motion.img
@@ -224,8 +225,8 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
 
       {/* Body */}
-      <div className="relative px-5 pb-5 pt-1">
-        <div className="flex items-center gap-3 text-[11px] font-bold">
+      <div className="relative px-4 sm:px-5 pb-5 pt-1">
+        <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-bold flex-wrap">
           <span className="inline-flex items-center gap-1 text-emerald-300">
             <CheckCircle2 className="h-3 w-3" /> AUTO
           </span>
@@ -235,30 +236,30 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
           <span className="text-white/60">VENDIDAS: <span className="text-[#A78BFA] font-black">{plan.sold}</span></span>
         </div>
 
-        <h3 className="mt-3 text-[16px] font-black tracking-tight leading-snug text-white">
+        <h3 className="mt-3 text-[15px] sm:text-[16px] font-black tracking-tight leading-snug text-white">
           {plan.title}
         </h3>
-        <p className="mt-2 text-[13px] text-white/50 leading-relaxed line-clamp-2">
+        <p className="mt-2 text-[12.5px] sm:text-[13px] text-white/50 leading-relaxed line-clamp-2">
           {plan.description}
         </p>
 
         <div className="mt-5 flex items-end justify-between gap-3">
-          <div>
+          <div className="min-w-0">
             <div className="text-xs text-white/35 line-through">{formatBRL(plan.old)}</div>
-            <div className="text-3xl font-black tracking-tight">
+            <div className="text-2xl sm:text-3xl font-black tracking-tight">
               <span className="text-gradient">{formatBRL(plan.price)}</span>
             </div>
           </div>
           <Link
             to="/checkout/$planId"
             params={{ planId: plan.id }}
-            className="inline-flex items-center gap-2 h-12 px-5 rounded-full text-[13px] font-black tracking-wider text-white bg-gradient-to-b from-[#7A5CFF] to-[#5B3DF5] shadow-[0_10px_30px_-10px_rgba(91,61,245,0.9)] hover:brightness-110 hover:-translate-y-0.5 transition-all"
+            className="shrink-0 inline-flex items-center gap-1.5 sm:gap-2 h-11 sm:h-12 px-4 sm:px-5 rounded-full text-[12px] sm:text-[13px] font-black tracking-wider text-white bg-gradient-to-b from-[#7A5CFF] to-[#5B3DF5] shadow-[0_10px_30px_-10px_rgba(91,61,245,0.9)] hover:brightness-110 hover:-translate-y-0.5 transition-all"
           >
             COMPRAR <ChevronRight className="h-4 w-4" />
           </Link>
-
         </div>
       </div>
+
       </div>
     </motion.article>
 

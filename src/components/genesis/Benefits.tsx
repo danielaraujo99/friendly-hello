@@ -51,8 +51,8 @@ function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
 
 export function Benefits() {
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+    <section className="relative py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export function Benefits() {
             <Star className="h-3.5 w-3.5" />
             Por que a Love Hyro
           </div>
-          <h2 className="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight max-w-3xl">
+          <h2 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight max-w-3xl">
             A plataforma feita para <span className="text-gradient">entregar rápido</span>
           </h2>
           <p className="mt-4 text-white/60 max-w-xl">
@@ -72,7 +72,7 @@ export function Benefits() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {/* Big left card */}
           <motion.div
             onMouseMove={handleMouseMove}
@@ -80,7 +80,7 @@ export function Benefits() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className={`lg:row-span-2 lg:col-span-1 ${cardBase} min-h-[340px] flex flex-col`}
+            className={`sm:col-span-2 lg:col-span-1 lg:row-span-2 ${cardBase} min-h-[260px] sm:min-h-[340px] flex flex-col`}
           >
             <Glow />
             {/* Decorative orb */}

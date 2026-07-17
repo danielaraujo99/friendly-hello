@@ -6,6 +6,7 @@ import { Background } from "@/components/genesis/Background";
 import { Navbar } from "@/components/genesis/Navbar";
 import { Footer } from "@/components/genesis/Footer";
 import { getPlanById, formatBRL } from "@/lib/plans";
+import { PixIcon } from "@/components/genesis/PixIcon";
 
 export const Route = createFileRoute("/checkout/$planId")({
   head: ({ params }) => ({
@@ -102,8 +103,8 @@ function CheckoutPage() {
     <div className="dark relative min-h-screen text-white overflow-x-hidden">
       <Background />
       <Navbar />
-      <main className="mx-auto max-w-7xl px-5 lg:px-8 pt-24 pb-20 lg:pt-28">
-        <div className="flex items-center justify-between gap-4">
+      <main className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8 pt-20 sm:pt-24 pb-16 lg:pt-28">
+        <div className="flex items-center justify-between gap-3">
           <Link to="/" className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
             <ArrowLeft className="h-4 w-4" /> Voltar
           </Link>
@@ -114,18 +115,18 @@ function CheckoutPage() {
 
         <motion.h1
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="mt-5 text-3xl sm:text-4xl font-bold tracking-tight"
+          className="mt-4 text-[26px] sm:text-4xl font-bold tracking-tight leading-tight"
         >
           Finalize sua <span className="text-gradient">compra</span>
-
         </motion.h1>
-        <p className="mt-2 text-sm text-white/55">Preencha seus dados. A ativação é automática após o pagamento via PIX.</p>
+        <p className="mt-2 text-[13px] sm:text-sm text-white/55">Preencha seus dados. A ativação é automática após o pagamento via PIX.</p>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
+        <div className="mt-6 sm:mt-10 grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
+
           {/* FORM */}
           <motion.section
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-6 sm:p-8"
+            className="rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl p-4 sm:p-8"
           >
             {success ? (
               <div className="py-10 text-center">
@@ -198,23 +199,24 @@ function CheckoutPage() {
                   <span className="h-6 w-6 rounded-full grid place-items-center bg-[#5B3DF5]/20 border border-[#7A5CFF]/40 text-[10px] text-[#A78BFA]">2</span>
                   Pagamento
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-white">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 sm:p-4 flex items-center gap-3 flex-wrap sm:flex-nowrap">
+                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-white shrink-0">
                     <PixIcon className="h-6 w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-semibold">PIX · Aprovação instantânea</div>
-                    <div className="text-xs text-white/50">Liberação automática assim que o pagamento é confirmado.</div>
+                    <div className="text-[11px] sm:text-xs text-white/50 leading-snug">Liberação automática assim que o pagamento é confirmado.</div>
                   </div>
-                  <span className="text-[10px] font-black tracking-wider rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 px-2 py-1">RECOMENDADO</span>
+                  <span className="shrink-0 text-[10px] font-black tracking-wider rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 px-2 py-1">RECOMENDADO</span>
                 </div>
+
 
                 <button
                   type="submit"
                   disabled={submitting}
                   className="mt-2 w-full h-12 rounded-xl text-[13px] font-semibold tracking-wide text-white bg-[#5B3DF5]/90 hover:bg-[#5B3DF5] border border-white/10 hover:border-white/15 shadow-[0_8px_24px_-12px_rgba(91,61,245,0.6)] hover:shadow-[0_10px_28px_-12px_rgba(91,61,245,0.7)] transition-all disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2.5"
                 >
-                  <PixIcon className="h-4 w-4" monochrome />
+                  <PixIcon className="h-4 w-4" />
                   {submitting ? "Processando..." : `Pagar ${formatBRL(plan.price)} com Pix`}
                 </button>
 
@@ -232,8 +234,8 @@ function CheckoutPage() {
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }}
             className="lg:sticky lg:top-28 h-fit rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-xl overflow-hidden"
           >
-            <div className="relative p-4">
-              <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden border border-white/10">
+            <div className="relative p-3 sm:p-4">
+              <div className="relative h-48 sm:h-64 rounded-2xl overflow-hidden border border-white/10">
                 <img src={plan.image} alt={plan.title} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
                 <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#7A5CFF] to-[#5B3DF5] px-3 py-1 text-[11px] font-black text-white">
@@ -245,7 +247,8 @@ function CheckoutPage() {
               </div>
             </div>
 
-            <div className="px-6 pb-6">
+            <div className="px-5 sm:px-6 pb-5 sm:pb-6">
+
               <div className="text-[10px] font-bold tracking-wider text-white/40 uppercase">Resumo do pedido</div>
               <h2 className="mt-2 text-lg font-black leading-snug">{plan.title}</h2>
               <p className="mt-1.5 text-[13px] text-white/55 leading-relaxed">{plan.description}</p>
@@ -332,15 +335,4 @@ function Row({ label, value, muted, accent }: { label: string; value: string; mu
   );
 }
 
-function PixIcon({ className, monochrome }: { className?: string; monochrome?: boolean }) {
-  // Official Pix mark (Banco Central do Brasil) — stylized rotated square with 4 arrow-like notches.
-  const c = monochrome ? "currentColor" : "#32BCAD";
-  return (
-    <svg className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Pix" role="img">
-      <path fill={c} d="M242.4 292.5c7.5 7.5 19.7 7.5 27.2 0l67.2-67.2c3-3 7-4.6 11.2-4.6h8.2L271.8 141.3c-8.7-8.7-22.9-8.7-31.6 0L155.9 220.7h4.9c4.2 0 8.2 1.7 11.2 4.6l70.4 67.2z"/>
-      <path fill={c} d="M269.6 373.7c-7.5 7.5-19.7 7.5-27.2 0l-70.4-70.4c-3-3-7-4.6-11.2-4.6h-11.2L233.9 383c8.7 8.7 22.9 8.7 31.6 0l84.2-84.2h-8.2c-4.2 0-8.2-1.7-11.2-4.6l-60.7 79.5z"/>
-      <path fill={c} d="M383.9 220.7l-50.7 0-58.3 58.3c-11.6 11.6-30.6 11.6-42.2 0l-58.3-58.3-50.7 0-33.6 33.6c-8.7 8.7-8.7 22.9 0 31.6l33.6 33.6 50.7 0 58.3-58.3c11.6-11.6 30.6-11.6 42.2 0l58.3 58.3 50.7 0 33.6-33.6c8.7-8.7 8.7-22.9 0-31.6l-33.6-33.6z"/>
-    </svg>
-  );
-}
 

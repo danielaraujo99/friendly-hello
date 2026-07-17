@@ -24,7 +24,7 @@ export function Navbar() {
         scrolled ? "bg-[rgba(11,7,21,0.85)] backdrop-blur-xl border-b border-white/5" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
         <div className="flex h-16 items-center gap-8">
           <a href="#hero" className="flex items-center gap-2 shrink-0">
             <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#7A5CFF] to-[#5B3DF5] grid place-items-center">
