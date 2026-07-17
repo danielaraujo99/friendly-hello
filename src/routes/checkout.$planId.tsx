@@ -149,6 +149,7 @@ function CheckoutPage() {
 
                 <Field label="Nome completo" icon={User} error={errors.name}>
                   <input
+                    required
                     value={form.name}
                     onChange={(e) => set("name", e.target.value)}
                     placeholder="Como está no documento"
@@ -160,6 +161,7 @@ function CheckoutPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="E-mail" icon={Mail} error={errors.email}>
                     <input
+                      required
                       type="email"
                       value={form.email}
                       onChange={(e) => set("email", e.target.value)}
@@ -170,6 +172,7 @@ function CheckoutPage() {
                   </Field>
                   <Field label="Telefone" icon={Phone} error={errors.phone}>
                     <input
+                      required
                       inputMode="tel"
                       value={form.phone}
                       onChange={(e) => set("phone", maskPhone(e.target.value))}
@@ -182,6 +185,7 @@ function CheckoutPage() {
 
                 <Field label="CPF" icon={IdCard} error={errors.cpf}>
                   <input
+                    required
                     inputMode="numeric"
                     value={form.cpf}
                     onChange={(e) => set("cpf", maskCPF(e.target.value))}
@@ -195,11 +199,11 @@ function CheckoutPage() {
                   Pagamento
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-gradient-to-br from-[#7A5CFF] to-[#5B3DF5]">
-                    <CreditCard className="h-5 w-5" />
+                  <div className="h-10 w-10 rounded-xl grid place-items-center bg-white">
+                    <PixIcon className="h-6 w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold">PIX - Aprovação instantânea</div>
+                    <div className="text-sm font-semibold">PIX · Aprovação instantânea</div>
                     <div className="text-xs text-white/50">Liberação automática assim que o pagamento é confirmado.</div>
                   </div>
                   <span className="text-[10px] font-black tracking-wider rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 px-2 py-1">RECOMENDADO</span>
@@ -208,10 +212,12 @@ function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-2 w-full h-14 rounded-2xl text-sm font-black tracking-wider text-white bg-gradient-to-b from-[#7A5CFF] to-[#5B3DF5] shadow-[0_16px_40px_-16px_rgba(91,61,245,0.9)] hover:brightness-110 hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+                  className="mt-2 w-full h-12 rounded-xl text-[13px] font-semibold tracking-wide text-white bg-[#5B3DF5]/90 hover:bg-[#5B3DF5] border border-white/10 hover:border-white/15 shadow-[0_8px_24px_-12px_rgba(91,61,245,0.6)] hover:shadow-[0_10px_28px_-12px_rgba(91,61,245,0.7)] transition-all disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2.5"
                 >
-                  {submitting ? "PROCESSANDO..." : `PAGAR ${formatBRL(plan.price)} COM PIX`}
+                  <PixIcon className="h-4 w-4" monochrome />
+                  {submitting ? "Processando..." : `Pagar ${formatBRL(plan.price)} com Pix`}
                 </button>
+
 
                 <p className="text-center text-[11px] text-white/40 inline-flex items-center gap-1.5 justify-center w-full">
                   <ShieldCheck className="h-3 w-3 text-[#A78BFA]" />
