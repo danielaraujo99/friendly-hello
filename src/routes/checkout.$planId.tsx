@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ShieldCheck, Zap, Clock, Infinity as InfinityIcon, CheckCircle2, Lock, CreditCard, User, Mail, Phone, IdCard } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Zap, Clock, Infinity as InfinityIcon, CheckCircle2, Lock, User, Mail, Phone, IdCard } from "lucide-react";
 import { Background } from "@/components/genesis/Background";
 import { Navbar } from "@/components/genesis/Navbar";
 import { Footer } from "@/components/genesis/Footer";
