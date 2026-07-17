@@ -21,7 +21,7 @@ export function Hero() {
 
             <motion.h1
               initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-5 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02]"
+              className="mt-5 text-[40px] leading-[1.05] sm:text-6xl lg:text-7xl font-bold tracking-[-0.03em] sm:leading-[1.02]"
             >
               Congele seus<br />
               créditos com a<br />
@@ -30,11 +30,12 @@ export function Hero() {
 
             <motion.p
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 max-w-lg text-base sm:text-lg text-white/60 leading-relaxed"
+              className="mt-5 sm:mt-6 max-w-lg text-[15px] sm:text-lg text-white/60 leading-relaxed"
             >
               A ferramenta essencial pra quem não aceita perder créditos. Ative o
               congelamento instantâneo no seu navegador, com PIX e liberação na hora.
             </motion.p>
+
 
             <motion.div
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
