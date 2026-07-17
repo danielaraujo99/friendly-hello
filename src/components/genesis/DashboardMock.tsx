@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, Code2, Zap, Cpu } from "lucide-react";
+import heroVisual from "@/assets/hero-visual.jpg.asset.json";
+
 
 export function DashboardMock() {
   return (
@@ -12,6 +14,15 @@ export function DashboardMock() {
       <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(ellipse_at_center,rgba(122,92,255,0.22),transparent_65%)] blur-2xl" />
 
       <div className="relative rounded-[2rem] border border-white/10 bg-gradient-to-b from-[#161029] to-[#0d0819] p-6 sm:p-8 overflow-hidden aspect-[4/5] sm:aspect-square">
+        <img
+          src={heroVisual.url}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          className="absolute inset-0 h-full w-full object-cover opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0819]/40 via-[#0d0819]/20 to-[#0d0819]/95" />
         <div className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
@@ -20,6 +31,7 @@ export function DashboardMock() {
             maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
           }}
         />
+
 
         <div className="relative h-full flex flex-col justify-between">
           <div>
