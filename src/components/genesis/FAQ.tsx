@@ -5,7 +5,7 @@ import { SectionHeader } from "./SectionHeader";
 
 const FAQS = [
   {
-    q: "Afinal, o que a Extensão Genesis faz?",
+    q: "Afinal, o que a Extensão Love Hyro faz?",
     a: "Ela congela o consumo de créditos dentro do seu navegador enquanto você usa a plataforma. Você trabalha normalmente, mas os créditos param de ser descontados durante a sessão ativa.",
   },
   {
