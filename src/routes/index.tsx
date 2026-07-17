@@ -4,7 +4,7 @@ import { Navbar } from "@/components/genesis/Navbar";
 import { Hero } from "@/components/genesis/Hero";
 import { TrustStrip } from "@/components/genesis/TrustStrip";
 import { CommunityBanner } from "@/components/genesis/CommunityBanner";
-import { Categories } from "@/components/genesis/Categories";
+import { VideoTutorial } from "@/components/genesis/VideoTutorial";
 import { FeaturedProducts } from "@/components/genesis/FeaturedProducts";
 import { Benefits } from "@/components/genesis/Benefits";
 import { HowItWorks } from "@/components/genesis/HowItWorks";
@@ -26,7 +26,7 @@ function Index() {
         <Hero />
         <TrustStrip />
         <CommunityBanner />
-        <Categories />
+        <VideoTutorial />
         <FeaturedProducts />
         <Benefits />
       </main>
