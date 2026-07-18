@@ -28,20 +28,27 @@ export function Navbar() {
             <span className="text-[15px] font-semibold tracking-tight">Love Hyro</span>
           </a>
 
+          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 h-11 px-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl">
+            <NavPill href="#recursos">Recursos</NavPill>
+            <NavPill href="#planos">Planos</NavPill>
+            <NavPill href="#download">Download</NavPill>
+            <NavPill href="#faq">FAQ</NavPill>
+          </nav>
+
           <div className="hidden sm:flex items-center gap-2 shrink-0 ml-auto">
-            <ShimmerCTA href="#planos">Começar agora</ShimmerCTA>
             <a
               href="#login"
               className="h-10 px-4 rounded-full text-sm text-white/85 hover:text-white hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
               <User className="h-4 w-4" /> Login
             </a>
+            <ShimmerCTA href="#planos">Começar agora</ShimmerCTA>
           </div>
 
           <button
             aria-label="Menu"
             onClick={() => setOpen((o) => !o)}
-            className="sm:hidden ml-auto h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
+            className="md:hidden ml-auto h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -54,9 +61,24 @@ export function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="sm:hidden mx-4 mb-4 rounded-2xl bg-[#131024] border border-white/10 p-4"
+            className="md:hidden mx-4 mb-4 rounded-2xl bg-[#131024] border border-white/10 p-4"
           >
             <div className="grid gap-2">
+              {[
+                { href: "#recursos", label: "Recursos" },
+                { href: "#planos", label: "Planos" },
+                { href: "#download", label: "Download" },
+                { href: "#faq", label: "FAQ" },
+              ].map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="h-11 rounded-full text-sm font-medium text-white/85 hover:text-white bg-white/[0.03] border border-white/10 inline-flex items-center justify-center"
+                >
+                  {l.label}
+                </a>
+              ))}
               <ShimmerCTA href="#planos" onClick={() => setOpen(false)} block>
                 Começar agora
               </ShimmerCTA>
@@ -72,6 +94,17 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function NavPill({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="px-4 h-9 inline-flex items-center rounded-full text-[13px] font-medium text-white/75 hover:text-white hover:bg-white/[0.06] transition-colors"
+    >
+      {children}
+    </a>
   );
 }
 
