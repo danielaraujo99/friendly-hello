@@ -89,7 +89,7 @@ function PurchasesPage() {
           </a>
         </div>
 
-        <RecoveryBox onRecovered={(count) => count} />
+        <RecoveryBox />
 
         {filtered.length === 0 ? (
           <EmptyState hasAny={all.length > 0} />
