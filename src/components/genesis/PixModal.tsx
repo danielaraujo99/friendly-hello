@@ -6,6 +6,8 @@ import { formatBRL } from "@/lib/plans";
 import { getPixStatus } from "@/lib/checkout.functions";
 import { issueLicense, type IssuedLicense } from "@/lib/hyro-license.functions";
 import { clearActiveCharge, updateActiveCharge, saveIssuedLicense, getIssuedLicense } from "@/lib/pix-store";
+import { getDeviceInfo, getPublicIp } from "@/lib/device";
+
 
 type Charge = {
   id: string;
@@ -115,8 +117,10 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
       customerName: charge.customerName,
       customerEmail: charge.customerEmail,
     }})
-      .then((l) => {
+      .then(async (l) => {
         setLicense(l);
+        const dev = getDeviceInfo();
+        const ip = await getPublicIp();
         saveIssuedLicense({
           paymentId: charge.id,
           licenseKey: l.licenseKey,
@@ -125,9 +129,13 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
           planLabel: l.planLabel,
           expiresAt: l.expiresAt,
           issuedAt: Date.now(),
+          deviceId: dev.id,
+          fingerprint: dev.fingerprint,
+          ip,
         });
         clearActiveCharge();
       })
+
       .catch((e) => {
         issuedRef.current = false;
         setLicenseError(e instanceof Error ? e.message : "Falha ao emitir licença");
