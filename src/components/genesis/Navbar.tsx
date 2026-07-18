@@ -28,20 +28,27 @@ export function Navbar() {
             <span className="text-[15px] font-semibold tracking-tight">Love Hyro</span>
           </a>
 
+          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 h-11 px-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl">
+            <NavPill href="#recursos">Recursos</NavPill>
+            <NavPill href="#planos">Planos</NavPill>
+            <NavPill href="#download">Download</NavPill>
+            <NavPill href="#faq">FAQ</NavPill>
+          </nav>
+
           <div className="hidden sm:flex items-center gap-2 shrink-0 ml-auto">
-            <ShimmerCTA href="#planos">Começar agora</ShimmerCTA>
             <a
               href="#login"
               className="h-10 px-4 rounded-full text-sm text-white/85 hover:text-white hover:bg-white/5 transition-colors inline-flex items-center gap-2"
             >
               <User className="h-4 w-4" /> Login
             </a>
+            <ShimmerCTA href="#planos">Começar agora</ShimmerCTA>
           </div>
 
           <button
             aria-label="Menu"
             onClick={() => setOpen((o) => !o)}
-            className="sm:hidden ml-auto h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
+            className="md:hidden ml-auto h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
