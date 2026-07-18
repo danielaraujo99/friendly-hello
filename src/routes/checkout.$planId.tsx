@@ -87,6 +87,8 @@ function CheckoutPage() {
     amount: number;
     customerName?: string;
     customerEmail?: string;
+    customerPhone?: string;
+    customerCpf?: string;
     planId?: string;
   }>(null);
 
@@ -181,7 +183,7 @@ function CheckoutPage() {
           customerDocument: onlyDigits(form.cpf),
         },
       });
-      setCharge({ ...c, customerName: form.name.trim(), customerEmail: form.email.trim(), planId: plan.id });
+      setCharge({ ...c, customerName: form.name.trim(), customerEmail: form.email.trim(), customerPhone: onlyDigits(form.phone), customerCpf: onlyDigits(form.cpf), planId: plan.id });
       // Persist so mini card / refresh / accidental close keeps the Pix alive
       const remoteExpiry = c.expiresAt ? new Date(c.expiresAt).getTime() : NaN;
       const expiresAt = Number.isFinite(remoteExpiry) && remoteExpiry > Date.now()
@@ -199,6 +201,8 @@ function CheckoutPage() {
         status: "pending",
         customerName: form.name.trim(),
         customerEmail: form.email.trim(),
+        customerPhone: onlyDigits(form.phone),
+        customerCpf: onlyDigits(form.cpf),
       });
 
     } catch (err) {

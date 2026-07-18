@@ -12,6 +12,8 @@ export type StoredCharge = {
   status: "pending" | "paid" | "expired";
   customerName?: string;
   customerEmail?: string;
+  customerPhone?: string;
+  customerCpf?: string;
 };
 
 

@@ -25,27 +25,29 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
-        <div className="flex h-16 items-center gap-4">
-          <a href="/" className="flex items-center gap-2 shrink-0">
+        <div className="grid h-16 items-center gap-4 grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr]">
+          <a href="/" className="flex items-center gap-2 shrink-0 justify-self-start">
             <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#7A5CFF] to-[#5B3DF5] grid place-items-center">
               <span className="text-white text-[13px] font-black">L</span>
             </div>
             <span className="text-[15px] font-semibold tracking-tight">Love Hyro</span>
           </a>
 
-          <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 h-11 px-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl">
+          <nav className="hidden md:flex items-center gap-1 h-11 px-2 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-xl justify-self-center">
             <NavPill href="#recursos">Recursos</NavPill>
             <NavPill href="#planos">Planos</NavPill>
             <NavPill href="#download">Download</NavPill>
             <NavPill href="#faq">FAQ</NavPill>
           </nav>
 
-          <div className="hidden sm:flex items-center gap-2 shrink-0 ml-auto">
+          <div className="hidden sm:flex items-center gap-2 shrink-0 justify-self-end">
             <a
               href="/minhas-compras"
-              className="h-10 px-4 rounded-full text-sm text-white/85 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-colors inline-flex items-center gap-2"
+              aria-label="Minhas compras"
+              className="h-10 rounded-full text-sm text-white/85 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-colors inline-flex items-center gap-2 px-3 lg:px-4"
             >
-              <Package className="h-4 w-4 text-[#A78BFA]" /> Minhas compras
+              <Package className="h-4 w-4 text-[#A78BFA]" />
+              <span className="hidden lg:inline">Minhas compras</span>
               {hasPurchases && (
                 <span className="h-5 min-w-5 px-1.5 rounded-full bg-[#5B3DF5] text-[10px] font-black grid place-items-center">{licenses.length}</span>
               )}
@@ -63,7 +65,7 @@ export function Navbar() {
           <button
             aria-label="Menu"
             onClick={() => setOpen((o) => !o)}
-            className="md:hidden ml-auto h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10"
+            className="md:hidden h-10 w-10 grid place-items-center rounded-full bg-white/5 border border-white/10 justify-self-end"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

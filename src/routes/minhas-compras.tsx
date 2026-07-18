@@ -6,7 +6,7 @@ import { Background } from "@/components/genesis/Background";
 import { Navbar } from "@/components/genesis/Navbar";
 import { useIssuedLicenses, saveIssuedLicense, useRecentCharges, type StoredCharge, type StoredLicense } from "@/lib/pix-store";
 import { getDeviceInfo, getPublicIp } from "@/lib/device";
-import { issueLicense, recoverLicensesByEmail } from "@/lib/hyro-license.functions";
+import { issueLicense, recoverLicensesByCpf } from "@/lib/hyro-license.functions";
 import { getPixStatus } from "@/lib/checkout.functions";
 
 export const Route = createFileRoute("/minhas-compras")({
@@ -216,23 +216,32 @@ function AutoRecovery() {
 }
 
 function RecoveryBox() {
-  const [email, setEmail] = useState("");
+  const [cpf, setCpf] = useState("");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
   const [open, setOpen] = useState(false);
 
+  const maskCpf = (v: string) => {
+    const d = v.replace(/\D+/g, "").slice(0, 11);
+    return d
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMsg(null);
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setMsg({ kind: "err", text: "Informe um e-mail válido." });
+    const digits = cpf.replace(/\D+/g, "");
+    if (digits.length !== 11) {
+      setMsg({ kind: "err", text: "Informe um CPF válido (11 dígitos)." });
       return;
     }
     setLoading(true);
     try {
-      const rows = await recoverLicensesByEmail({ data: { email: email.trim() } });
+      const rows = await recoverLicensesByCpf({ data: { cpf: digits } });
       if (!rows.length) {
-        setMsg({ kind: "err", text: "Nenhuma licença encontrada para este e-mail." });
+        setMsg({ kind: "err", text: "Nenhuma licença encontrada para este CPF." });
       } else {
         for (const r of rows) {
           saveIssuedLicense({
@@ -246,7 +255,7 @@ function RecoveryBox() {
           });
         }
         setMsg({ kind: "ok", text: `${rows.length} licença(s) recuperada(s) e vinculada(s) a este dispositivo.` });
-        setEmail("");
+        setCpf("");
       }
     } catch (err) {
       setMsg({ kind: "err", text: err instanceof Error ? err.message : "Falha ao recuperar." });
@@ -266,17 +275,17 @@ function RecoveryBox() {
           <span className="h-8 w-8 rounded-lg grid place-items-center bg-[#5B3DF5]/15 border border-[#7A5CFF]/30">
             <MailSearch className="h-4 w-4 text-[#A78BFA]" />
           </span>
-          Não vejo minha compra: recuperar por e-mail
+          Não vejo minha compra: recuperar por CPF
         </span>
         <span className="text-[11px] text-white/45">{open ? "Fechar" : "Abrir"}</span>
       </button>
       {open && (
         <form onSubmit={submit} className="px-4 sm:px-5 pb-4 pt-1 flex flex-col sm:flex-row gap-2">
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail usado na compra"
+            inputMode="numeric"
+            value={cpf}
+            onChange={(e) => setCpf(maskCpf(e.target.value))}
+            placeholder="CPF usado na compra"
             className="flex-1 h-11 rounded-xl bg-white/[0.03] border border-white/10 px-3.5 text-sm text-white placeholder:text-white/35 outline-none focus:border-[#7A5CFF]/60"
           />
           <button
