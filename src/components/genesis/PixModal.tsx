@@ -118,6 +118,8 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
       paymentId: charge.id,
       customerName: charge.customerName,
       customerEmail: charge.customerEmail,
+      customerPhone: charge.customerPhone,
+      customerCpf: charge.customerCpf,
     }})
       .then(async (l) => {
         setLicense(l);
