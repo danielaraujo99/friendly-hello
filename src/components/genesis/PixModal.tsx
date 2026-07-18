@@ -147,21 +147,22 @@ export function PixModal({ charge, onClose }: { charge: Charge; onClose: () => v
                 </div>
 
                 {/* QR */}
-                <div className="mt-5 rounded-2xl border border-white/10 bg-white p-3 grid place-items-center">
+                <div className="mt-5 rounded-2xl border border-white/10 bg-white overflow-hidden grid place-items-center">
                   {charge.qrCodeBase64 ? (
                     <img
                       src={charge.qrCodeBase64.startsWith("data:") ? charge.qrCodeBase64 : `data:image/png;base64,${charge.qrCodeBase64}`}
                       alt="QR Code PIX"
-                      width={220}
-                      height={220}
-                      className="h-[220px] w-[220px] object-contain"
+                      width={240}
+                      height={240}
+                      className="h-[240px] w-[240px] object-cover scale-[1.14]"
                     />
                   ) : (
-                    <div className="h-[220px] w-[220px] grid place-items-center text-black/60 text-xs">
+                    <div className="h-[240px] w-[240px] grid place-items-center text-black/60 text-xs">
                       QR indisponível
                     </div>
                   )}
                 </div>
+
 
                 <p className="mt-4 text-[12.5px] text-white/60 text-center leading-relaxed">
                   Abra o app do seu banco, escaneie o QR Code ou use o código Pix copia e cola abaixo.
