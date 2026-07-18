@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import heroVisual from "@/assets/hero-visual.png.asset.json";
+import { assetUrl } from "@/lib/asset";
 
 export function DashboardMock() {
   return (
