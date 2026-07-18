@@ -4,6 +4,7 @@ import { Play, Pause, Volume2, VolumeX, Maximize2, PlayCircle, CheckCircle2, Roc
 import { SectionHeader } from "./SectionHeader";
 
 import tutorialCover from "@/assets/tutorial-cover.png.asset.json";
+import { assetUrl } from "@/lib/asset";
 
 const VIDEO_SRC =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
