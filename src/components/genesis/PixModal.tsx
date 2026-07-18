@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Check, X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Copy, Check, X, Loader2, CheckCircle2, AlertCircle, Minus } from "lucide-react";
 import { PixIcon } from "./PixIcon";
 import { formatBRL } from "@/lib/plans";
 import { getPixStatus } from "@/lib/checkout.functions";
+import { clearActiveCharge, updateActiveCharge } from "@/lib/pix-store";
 
 type Charge = {
   id: string;
@@ -24,7 +25,8 @@ function normalize(s: string): Status {
   return "pending";
 }
 
-export function PixModal({ charge, onClose }: { charge: Charge; onClose: () => void }) {
+export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onClose: () => void; onMinimize?: () => void }) {
+
   const deadline = useMemo(() => {
     const remote = charge.expiresAt ? new Date(charge.expiresAt).getTime() : NaN;
     const fromRemote = Number.isFinite(remote) ? remote : 0;
