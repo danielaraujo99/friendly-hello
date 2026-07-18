@@ -308,8 +308,20 @@ function CheckoutPage() {
                 className="mt-2 w-full h-12 rounded-xl text-[13px] font-semibold tracking-wide text-white bg-[#5B3DF5]/90 hover:bg-[#5B3DF5] border border-white/10 hover:border-white/15 shadow-[0_8px_24px_-12px_rgba(91,61,245,0.6)] hover:shadow-[0_10px_28px_-12px_rgba(91,61,245,0.7)] transition-all disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2.5"
               >
                 <PixIcon className="h-4 w-4" />
-                {submitting ? "Gerando Pix..." : `Pagar ${formatBRL(plan.price)} com Pix`}
+                {submitting
+                  ? "Gerando Pix..."
+                  : lockedThisPlan
+                    ? "Abrir Pix em aberto"
+                    : locked
+                      ? "Pix ativo em outro plano"
+                      : `Pagar ${formatBRL(plan.price)} com Pix`}
               </button>
+
+              {locked && (
+                <p className="text-center text-[11px] text-white/50">
+                  Campos bloqueados enquanto houver um Pix em aberto. Liberam automaticamente ao expirar.
+                </p>
+              )}
 
 
               <p className="text-center text-[11px] text-white/40 inline-flex items-center gap-1.5 justify-center w-full">
