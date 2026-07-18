@@ -217,7 +217,10 @@ function CheckoutPage() {
         </motion.h1>
         <p className="mt-2 text-[13px] sm:text-sm text-white/55">Preencha seus dados. A ativação é automática após o pagamento via PIX.</p>
 
+        <Stepper current={charge ? 2 : 1} />
+
         <div className="mt-6 sm:mt-10 grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
+
 
           {/* FORM */}
           <motion.section
