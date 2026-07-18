@@ -7,8 +7,6 @@ import { Menu, X, User } from "lucide-react";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const licenses = useIssuedLicenses();
-  const hasPurchases = licenses.length > 0;
 
 
   useEffect(() => {
