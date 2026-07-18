@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Check, X, Loader2, CheckCircle2, AlertCircle, Minus } from "lucide-react";
+import { Copy, Check, X, Loader2, CheckCircle2, AlertCircle, Minus, Key, Lock, Mail, Calendar, Download } from "lucide-react";
 import { PixIcon } from "./PixIcon";
 import { formatBRL } from "@/lib/plans";
 import { getPixStatus } from "@/lib/checkout.functions";
-import { clearActiveCharge, updateActiveCharge } from "@/lib/pix-store";
+import { issueLicense, type IssuedLicense } from "@/lib/hyro-license.functions";
+import { clearActiveCharge, updateActiveCharge, saveIssuedLicense, getIssuedLicense } from "@/lib/pix-store";
 
 type Charge = {
   id: string;
@@ -12,11 +13,11 @@ type Charge = {
   qrCodeText: string | null;
   expiresAt: string | null;
   amount: number;
+  customerName?: string;
+  customerEmail?: string;
+  planId?: string;
 };
 
-type Status = "pending" | "paid" | "expired" | "error";
-
-const EXPIRY_MS = 5 * 60 * 1000;
 
 function normalize(s: string): Status {
   const v = s.toLowerCase();
