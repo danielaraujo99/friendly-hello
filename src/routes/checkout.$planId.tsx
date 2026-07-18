@@ -181,7 +181,7 @@ function CheckoutPage() {
           customerDocument: onlyDigits(form.cpf),
         },
       });
-      setCharge(c);
+      setCharge({ ...c, customerName: form.name.trim(), customerEmail: form.email.trim(), planId: plan.id });
       // Persist so mini card / refresh / accidental close keeps the Pix alive
       const remoteExpiry = c.expiresAt ? new Date(c.expiresAt).getTime() : NaN;
       const expiresAt = Number.isFinite(remoteExpiry) && remoteExpiry > Date.now()
@@ -197,7 +197,10 @@ function CheckoutPage() {
         amount: c.amount,
         createdAt: Date.now(),
         status: "pending",
+        customerName: form.name.trim(),
+        customerEmail: form.email.trim(),
       });
+
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Falha ao gerar Pix. Tente novamente.";
       setServerError(msg);
