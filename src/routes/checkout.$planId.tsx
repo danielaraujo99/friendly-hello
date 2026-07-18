@@ -417,6 +417,11 @@ function CheckoutPage() {
           background: rgba(255,255,255,0.05);
           box-shadow: 0 0 0 4px rgba(122,92,255,0.12);
         }
+        .input:disabled {
+          opacity: 0.55;
+          cursor: not-allowed;
+          background: rgba(255,255,255,0.02);
+        }
       `}</style>
     </div>
   );
