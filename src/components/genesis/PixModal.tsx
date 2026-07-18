@@ -299,7 +299,7 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
   );
 }
 
-function SuccessState({ amount, license, issuing, error, onClose }: { amount: number; license: IssuedLicense | null; issuing: boolean; error: string | null; onClose: () => void }) {
+function SuccessState({ amount, license, issuing, error, onRetry, onClose }: { amount: number; license: IssuedLicense | null; issuing: boolean; error: string | null; onRetry: () => void; onClose: () => void }) {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const copyValue = async (key: string, val: string) => {
     try {
