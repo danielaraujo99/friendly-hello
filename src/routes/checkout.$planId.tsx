@@ -451,7 +451,7 @@ function Stepper({ current }: { current: 1 | 2 | 3 }) {
   const steps = [
     { n: 1, label: "Dados" },
     { n: 2, label: "Pagamento" },
-    { n: 3, label: "Acesso" },
+    { n: 3, label: "Chaves" },
   ] as const;
   return (
     <div className="mt-6 sm:mt-8 flex items-center justify-center">
