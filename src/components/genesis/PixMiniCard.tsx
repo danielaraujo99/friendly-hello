@@ -25,9 +25,17 @@ export function PixMiniCard() {
     navigate({
       to: "/checkout/$planId",
       params: { planId: charge.planId },
-    }).catch(() => {
-      window.location.href = `/checkout/${charge.planId}`;
-    });
+    })
+      .catch(() => {
+        window.location.href = `/checkout/${charge.planId}`;
+      })
+      .finally(() => {
+        // Ask the checkout page to (re)open the modal for the active charge.
+        // Fires on next tick to ensure listener on the target route is mounted.
+        window.setTimeout(() => {
+          window.dispatchEvent(new CustomEvent("lovehyro:pix:open"));
+        }, 0);
+      });
   };
 
 
@@ -39,7 +47,7 @@ export function PixMiniCard() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 24, scale: 0.95 }}
         transition={{ type: "spring", stiffness: 240, damping: 24 }}
-        className="fixed z-[90] bottom-3 right-3 sm:bottom-5 sm:right-5 w-[calc(100vw-1.5rem)] max-w-[320px]"
+        className="fixed z-[90] bottom-3 right-3 left-3 sm:left-auto sm:bottom-5 sm:right-5 sm:w-[320px] max-w-[calc(100vw-1.5rem)] sm:max-w-[320px] mx-auto sm:mx-0"
       >
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#120C24]/95 backdrop-blur-xl shadow-[0_20px_60px_-20px_rgba(91,61,245,0.6)]">
           <button
