@@ -61,9 +61,24 @@ export function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="sm:hidden mx-4 mb-4 rounded-2xl bg-[#131024] border border-white/10 p-4"
+            className="md:hidden mx-4 mb-4 rounded-2xl bg-[#131024] border border-white/10 p-4"
           >
             <div className="grid gap-2">
+              {[
+                { href: "#recursos", label: "Recursos" },
+                { href: "#planos", label: "Planos" },
+                { href: "#download", label: "Download" },
+                { href: "#faq", label: "FAQ" },
+              ].map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="h-11 rounded-full text-sm font-medium text-white/85 hover:text-white bg-white/[0.03] border border-white/10 inline-flex items-center justify-center"
+                >
+                  {l.label}
+                </a>
+              ))}
               <ShimmerCTA href="#planos" onClick={() => setOpen(false)} block>
                 Começar agora
               </ShimmerCTA>
