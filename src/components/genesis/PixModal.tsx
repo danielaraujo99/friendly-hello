@@ -209,7 +209,8 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
             </div>
 
             {status === "paid" ? (
-              <SuccessState amount={charge.amount} onClose={closeAndDiscard} />
+              <SuccessState amount={charge.amount} license={license} issuing={issuing} error={licenseError} onClose={closeAndDiscard} />
+
             ) : status === "expired" ? (
               <ExpiredState onClose={closeAndDiscard} />
             ) : (
