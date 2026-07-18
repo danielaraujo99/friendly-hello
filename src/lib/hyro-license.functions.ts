@@ -70,8 +70,33 @@ export const issueLicense = createServerFn({ method: "POST" })
     const password = generateLicensePassword();
     const expiresAt = computeExpiresAt(plan.hours);
 
+    // Ensure a user exists in hyro_extension_users (FK requirement).
+    // Reuse by email; otherwise create a lightweight "cliente" record.
+    let userId: string;
+    const { data: existingUser } = await db
+      .from("hyro_extension_users")
+      .select("id")
+      .eq("email", email)
+      .maybeSingle();
+    if (existingUser?.id) {
+      userId = String(existingUser.id);
+    } else {
+      userId = crypto.randomUUID();
+      const { error: userErr } = await db.from("hyro_extension_users").insert({
+        id: userId,
+        email,
+        name: data.customerName.trim(),
+        role: "cliente",
+        active: true,
+        password_hash: password,
+        whatsapp: phone || null,
+      });
+      if (userErr) throw new Error(`Não foi possível registrar o usuário: ${userErr.message}`);
+    }
+
     const row = {
       id: licenseKey,
+      user_id: userId,
       status: "ativa" as const,
       plan: plan.id,
       created_at: new Date().toISOString(),
@@ -85,6 +110,8 @@ export const issueLicense = createServerFn({ method: "POST" })
       customer_cpf: cpf || null,
       payment_id: data.paymentId,
     };
+
+
 
     const { error } = await db.from("hyro_extension_licenses").insert(row);
     if (error) throw new Error(`Não foi possível emitir a licença: ${error.message}`);
