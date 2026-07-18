@@ -101,9 +101,7 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
   }, [charge.id, status]);
 
   // Emit license the instant status turns paid (once).
-  useEffect(() => {
-    if (status !== "paid") return;
-    if (license || issuedRef.current) return;
+  const runIssue = () => {
     if (!charge.customerName || !charge.customerEmail || !charge.planId) {
       setLicenseError("Dados do comprador ausentes para emitir a licença.");
       return;
@@ -128,12 +126,20 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
           expiresAt: l.expiresAt,
           issuedAt: Date.now(),
         });
+        clearActiveCharge();
       })
       .catch((e) => {
         issuedRef.current = false;
         setLicenseError(e instanceof Error ? e.message : "Falha ao emitir licença");
       })
       .finally(() => setIssuing(false));
+  };
+
+  useEffect(() => {
+    if (status !== "paid") return;
+    if (license || issuedRef.current) return;
+    runIssue();
+     
   }, [status, license, charge]);
 
 
