@@ -25,11 +25,11 @@ export function PixMiniCard() {
     navigate({
       to: "/checkout/$planId",
       params: { planId: charge.planId },
-      search: { resume: 1 } as never,
     }).catch(() => {
-      window.location.href = `/checkout/${charge.planId}?resume=1`;
+      window.location.href = `/checkout/${charge.planId}`;
     });
   };
+
 
   return (
     <AnimatePresence>
