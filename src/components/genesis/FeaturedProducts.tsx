@@ -132,10 +132,9 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
               className="absolute inset-0 h-full w-full object-cover"
               draggable={false}
             />
-            {/* Subtle inner vignette to blend with card */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-            {/* Soft purple glow on hover (no sheen, no scale) */}
+            {/* Soft purple glow on hover (no film, no sheen, no scale) */}
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_50px_rgba(122,92,255,0.28)]" />
+
             {/* Top-left offer badge */}
             <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#7A5CFF] to-[#5B3DF5] px-3 py-1 text-[11px] font-black text-white shadow-[0_6px_20px_-6px_rgba(91,61,245,0.9)]">
               <Zap className="h-3 w-3" /> -15% OFF
