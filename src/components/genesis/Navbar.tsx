@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, Package } from "lucide-react";
+import { useIssuedLicenses } from "@/lib/pix-store";
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
