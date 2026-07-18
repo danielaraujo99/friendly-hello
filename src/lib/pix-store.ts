@@ -10,7 +10,10 @@ export type StoredCharge = {
   amount: number;
   createdAt: number;
   status: "pending" | "paid" | "expired";
+  customerName?: string;
+  customerEmail?: string;
 };
+
 
 const KEY = "lovehyro:pix:active";
 const EVT = "lovehyro:pix:changed";
