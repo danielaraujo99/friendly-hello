@@ -72,6 +72,7 @@ export const issueLicense = createServerFn({ method: "POST" })
 
     const row = {
       id: licenseKey,
+      user_id: crypto.randomUUID(),
       status: "ativa" as const,
       plan: plan.id,
       created_at: new Date().toISOString(),
@@ -85,6 +86,7 @@ export const issueLicense = createServerFn({ method: "POST" })
       customer_cpf: cpf || null,
       payment_id: data.paymentId,
     };
+
 
     const { error } = await db.from("hyro_extension_licenses").insert(row);
     if (error) throw new Error(`Não foi possível emitir a licença: ${error.message}`);
