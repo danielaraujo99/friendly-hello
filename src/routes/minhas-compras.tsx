@@ -114,6 +114,88 @@ function PurchasesPage() {
   );
 }
 
+function RecoveryBox() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
+  const [open, setOpen] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMsg(null);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setMsg({ kind: "err", text: "Informe um e-mail válido." });
+      return;
+    }
+    setLoading(true);
+    try {
+      const rows = await recoverLicensesByEmail({ data: { email: email.trim() } });
+      if (!rows.length) {
+        setMsg({ kind: "err", text: "Nenhuma licença encontrada para este e-mail." });
+      } else {
+        for (const r of rows) {
+          saveIssuedLicense({
+            paymentId: `recover_${r.licenseKey}`,
+            licenseKey: r.licenseKey,
+            password: r.password,
+            email: r.email,
+            planLabel: r.planLabel,
+            expiresAt: r.expiresAt,
+            issuedAt: new Date(r.createdAt).getTime() || Date.now(),
+          });
+        }
+        setMsg({ kind: "ok", text: `${rows.length} licença(s) recuperada(s) e vinculada(s) a este dispositivo.` });
+        setEmail("");
+      }
+    } catch (err) {
+      setMsg({ kind: "err", text: err instanceof Error ? err.message : "Falha ao recuperar." });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="mb-5 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 text-left hover:bg-white/[0.02] transition-colors"
+      >
+        <span className="inline-flex items-center gap-2.5 text-[13px] font-semibold text-white/85">
+          <span className="h-8 w-8 rounded-lg grid place-items-center bg-[#5B3DF5]/15 border border-[#7A5CFF]/30">
+            <MailSearch className="h-4 w-4 text-[#A78BFA]" />
+          </span>
+          Não vejo minha compra: recuperar por e-mail
+        </span>
+        <span className="text-[11px] text-white/45">{open ? "Fechar" : "Abrir"}</span>
+      </button>
+      {open && (
+        <form onSubmit={submit} className="px-4 sm:px-5 pb-4 pt-1 flex flex-col sm:flex-row gap-2">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail usado na compra"
+            className="flex-1 h-11 rounded-xl bg-white/[0.03] border border-white/10 px-3.5 text-sm text-white placeholder:text-white/35 outline-none focus:border-[#7A5CFF]/60"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="h-11 px-5 rounded-xl bg-[#5B3DF5]/90 hover:bg-[#5B3DF5] border border-white/10 text-white text-[13px] font-semibold inline-flex items-center justify-center gap-2 transition-colors disabled:opacity-60"
+          >
+            {loading ? <><Loader2 className="h-4 w-4 animate-spin" /> Buscando</> : "Recuperar"}
+          </button>
+          {msg && (
+            <div className={`sm:col-span-2 text-[12px] rounded-lg px-3 py-2 border ${msg.kind === "ok" ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-200" : "border-red-400/30 bg-red-500/10 text-red-200"}`}>
+              {msg.text}
+            </div>
+          )}
+        </form>
+      )}
+    </div>
+  );
+}
+
 function EmptyState({ hasAny }: { hasAny: boolean }) {
   return (
     <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-10 text-center">
