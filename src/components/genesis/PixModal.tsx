@@ -330,8 +330,17 @@ function SuccessState({ amount, license, issuing, error, onRetry, onClose }: { a
       )}
 
       {error && !license && (
-        <div className="mt-5 rounded-xl border border-red-400/30 bg-red-500/10 px-3 py-2 text-[12px] text-red-200 text-center">
-          {error}
+        <div className="mt-5 space-y-3">
+          <div className="rounded-xl border border-red-400/30 bg-red-500/10 px-3 py-2 text-[12px] text-red-200 text-center">
+            {error}
+          </div>
+          <button
+            onClick={onRetry}
+            disabled={issuing}
+            className="w-full h-11 rounded-xl bg-[#5B3DF5]/90 hover:bg-[#5B3DF5] border border-white/10 text-white text-[12.5px] font-semibold inline-flex items-center justify-center gap-2 transition-colors disabled:opacity-60"
+          >
+            {issuing ? <><Loader2 className="h-4 w-4 animate-spin" /> Emitindo...</> : <>Tentar novamente</>}
+          </button>
         </div>
       )}
 
