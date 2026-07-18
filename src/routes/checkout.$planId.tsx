@@ -41,7 +41,7 @@ function PlanNotFound() {
           <ArrowLeft className="h-4 w-4" /> Voltar para a loja
         </Link>
       </main>
-      <Footer />
+      
     </div>
   );
 }
