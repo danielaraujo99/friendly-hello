@@ -53,7 +53,10 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
 
   useEffect(() => {
     if (status !== "pending") return;
-    if (remaining <= 0) { setStatus("expired"); return; }
+    if (remaining <= 0) {
+      setStatus("expired");
+      clearActiveCharge();
+    }
   }, [remaining, status]);
 
   useEffect(() => {
@@ -64,7 +67,11 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
         const r = await getPixStatus({ data: { id: charge.id } });
         if (cancelled) return;
         const s = normalize(r.status || "");
-        if (s !== "pending") setStatus(s);
+        if (s !== "pending") {
+          setStatus(s);
+          if (s === "paid") updateActiveCharge({ status: "paid" });
+          clearActiveCharge();
+        }
       } catch { /* silently retry */ }
     };
     pollRef.current = window.setInterval(tick, 4000);
@@ -75,15 +82,23 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
     };
   }, [charge.id, status]);
 
+  const minimize = onMinimize ?? onClose;
+
+  const closeAndDiscard = () => {
+    clearActiveCharge();
+    onClose();
+  };
+
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") minimize(); };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [minimize]);
+
 
   const copy = async () => {
     if (!charge.qrCodeText) return;
