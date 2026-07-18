@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Key, Lock, Mail, Calendar, Copy, Check, Download, ShieldCheck, Search, Package, Fingerprint } from "lucide-react";
+import { ArrowLeft, Key, Lock, Mail, Calendar, Copy, Check, Download, ShieldCheck, Search, Package, Fingerprint, Loader2, MailSearch } from "lucide-react";
 import { Background } from "@/components/genesis/Background";
 import { Navbar } from "@/components/genesis/Navbar";
-import { useIssuedLicenses, type StoredLicense } from "@/lib/pix-store";
+import { useIssuedLicenses, saveIssuedLicense, type StoredLicense } from "@/lib/pix-store";
 import { getDeviceInfo, getPublicIp } from "@/lib/device";
+import { recoverLicensesByEmail } from "@/lib/hyro-license.functions";
 
 export const Route = createFileRoute("/minhas-compras")({
   head: () => ({
