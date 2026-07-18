@@ -97,6 +97,44 @@ export function PixModal({ charge, onClose, onMinimize }: { charge: Charge; onCl
     };
   }, [charge.id, status]);
 
+  // Emit license the instant status turns paid (once).
+  useEffect(() => {
+    if (status !== "paid") return;
+    if (license || issuedRef.current) return;
+    if (!charge.customerName || !charge.customerEmail || !charge.planId) {
+      setLicenseError("Dados do comprador ausentes para emitir a licença.");
+      return;
+    }
+    issuedRef.current = true;
+    setIssuing(true);
+    setLicenseError(null);
+    issueLicense({ data: {
+      planId: charge.planId,
+      paymentId: charge.id,
+      customerName: charge.customerName,
+      customerEmail: charge.customerEmail,
+    }})
+      .then((l) => {
+        setLicense(l);
+        saveIssuedLicense({
+          paymentId: charge.id,
+          licenseKey: l.licenseKey,
+          password: l.password,
+          email: l.email,
+          planLabel: l.planLabel,
+          expiresAt: l.expiresAt,
+          issuedAt: Date.now(),
+        });
+      })
+      .catch((e) => {
+        issuedRef.current = false;
+        setLicenseError(e instanceof Error ? e.message : "Falha ao emitir licença");
+      })
+      .finally(() => setIssuing(false));
+  }, [status, license, charge]);
+
+
+
   const minimize = onMinimize ?? onClose;
 
   const closeAndDiscard = () => {
